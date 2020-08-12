@@ -48,24 +48,20 @@
 <!--- End of Jumbotron -->
 
 <!--- Start of Log in form -->
-<form action="/action_page.php">
-  <div class="form-group">
-    <label for="email">Email Address:</label>
-    <input type="email" class="form-control" placeholder="Enter email" id="email">
-  </div>
-  <div class="form-group">
-    <label for="pwd">Password:</label>
-    <input type="password" class="form-control" placeholder="Enter password" id="pwd">
-  </div>
-  <div class="form-group form-check">
-    <label class="form-check-label">
-      <input class="form-check-input" type="checkbox">Remeber me
-    </label>
-  </div>
-  <button type="submit" cass="btn btn-primary">Submit</button>
+<h2>Login</h2>
+<form action="/login" method="post">
+	<input type="email" name="email" placeholder="Email">
+	<input type="password" name="password" placeholder="Password">
+	<button type="submit">Login</button>
 </form>
 <!--- End of Log in form -->
-
+<h2>Register</h2>
+<form action="/register" method="post">
+	<input type="email" name="email" placeholder="Email">
+	<input type="password" name="password" placeholder="Password">
+	<input type="password" name="passwordConfirm" placeholder="Confirm Password">
+	<button type="submit">Register</button>
+</form>
 <!--- Start ofCarousel
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
