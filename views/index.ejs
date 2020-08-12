@@ -55,6 +55,8 @@
 	<button type="submit">Login</button>
 </form>
 <!--- End of Log in form -->
+
+<!--- Start of register form -->
 <h2>Register</h2>
 <form action="/register" method="post">
 	<input type="email" name="email" placeholder="Email">
@@ -62,6 +64,17 @@
 	<input type="password" name="passwordConfirm" placeholder="Confirm Password">
 	<button type="submit">Register</button>
 </form>
+<!--- End of Register form -->
+
+<!--- Profile Update -->
+<form action="/account" method="post" enctype="multipart/form-data">
+  <input type="text" name="displayName" placeholder="Display Name">
+  <input type="email" name="email" placeholder="Email">
+  <input type="file" name="avatar">
+	<button type="submit">Update</button>
+</form>
+<!--- End of profile update -->
+
 <!--- Start ofCarousel
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
