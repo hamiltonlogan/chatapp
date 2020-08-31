@@ -2,26 +2,26 @@ var UserController = require('../controllers/UserController');
 var createError = require('http-errors');
 
 /**
- * Router class to add controller routes to express
- * 
+ * Router class to add controller routes to Express
+ *
  * @class
- * 
+ *
  */
 class Router{
-    
+
     constructor(){
-        this.setVariable();
+        this.setVariables();
         this.addBaseRoutes();
         this.addControllers();
-        this.addBaseRoutes();
+        this.handle404s();
         this.handleErrors();
     }
 
     /**
-     * Assign middleware to add session errors
+     * Assigns middleware to add session errors
      * to local values
      */
-    setVariable(){
+    setVariables(){
         AraDTApp.use(function(request, response, next) {
             if (request.session.errors) {
                 response.locals.errors = request.session.errors;
@@ -33,53 +33,90 @@ class Router{
     }
 
     /**
-     * Adds simple routes that only require a view,
+     * Adds simple routes that only require a view, 
      * no controllers or models
      */
     addBaseRoutes() {
-        AraDTApp.get('/register', this.signup);
-        signup(request, response){
-            response.render('register');
-        }
+        AraDTApp.get('/index', this.index);
+        AraDTApp.get('/chat', this.chat);
+        AraDTApp.get('/login', this.login);
+        AraDTApp.get('/contact', this.contact);
+        AraDTApp.get('/chat2', this.chat2);
+        AraDTApp.get('/chat3', this.chat3);
+        AraDTApp.get('/about', this.about);
+        AraDTApp.get('/account', this.account);
+    }
+
+    index(request, response, next) {
+        response.render('index')
+    }
+
+    chat(reuqest,response, next) {
+        response.render('chat')
+    }
+
+    account(request, response, next) {
+        response.render('account')
+    }
+
+    login(request, response, next) {
+        response.render('login')
+    }
+
+    contact(request, response, next) {
+        response.render('contact')
+    }
+
+    chat2(request, response, next) {
+        response.render('chat2')
+    }
+
+    chat3(request, response, next) {
+        response.render('chat3')
+    }
+    
+    about(request, response, next) {
+        response.render('about')
     }
 
     /**
-     * Add controllers for key models,
-     * e.g. User, Channels, Messages
+     * Add controllers for key models, 
+     * e.g. Users, Channels, Messages
      */
     addControllers() {
-        var UserController = new UserController();
+        var userController = new UserController();
     }
 
     // Renders home page ./views/index.ejs
-    index(request , response, next) {
+    index(request, response, next) {
         response.render('index');
     }
 
-    // Adds middlewarre to add HTTP Error to 404 requests
+    // Adds middleware to add HTTP Error to 404 requests
     handle404s() {
         AraDTApp.use(function(request, response, next) {
             next(createError(404));
-        })
+        });
     }
 
     // Adds middleware to handle server errors
     handleErrors() {
         
-        // Error 
+        //  error handler
         AraDTApp.use(function(error, request, response, next) {
             if (error) {
                 console.log('Error', error);
             }
-            // Ser locals, only providing error in development
+            //  set locals, only providing error in development
             response.locals.message = error.message;
             response.locals.error = error;
-
-            // render the error page
+            
+            //  render the error page
             response.status(error.status || 500);
             response.render('error');
         });
     }
-}
 
+}
 module.exports = Router;
+  

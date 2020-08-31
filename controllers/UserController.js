@@ -1,3 +1,5 @@
+const { response } = require("express");
+
 /**
  * UserController Class.
  * 
@@ -8,7 +10,7 @@
  * @class
  *
  */
-class UserController{
+class UserController {
 
     /**
      * Instantiates class, calls method to set required session variables 
@@ -20,13 +22,31 @@ class UserController{
         this.setVariables();
 
         // Add all routing middleware for user endpoints
+        AraDTApp.get('/register', this.signup);
         AraDTApp.post('/register', this.register);
         AraDTApp.post('/login', this.login);
         AraDTApp.get('/logout', this.logout);
         AraDTApp.get('/account', this.getAccount);
+        AraDTApp.get('/home', this.getHome);
         AraDTApp.post('/account', this.updateAccount);
         AraDTApp.post('/password', this.updatePassword);
     }
+
+
+
+    getHome(request, response){
+        response.render('home');
+    }
+
+
+    signup(request, response){
+        response.render('register');
+    }
+
+    chat(reuqest, response) {
+        response.render('chat');
+    }
+
 
     /**
      * Assigns middleware to add Firebase.auth().currentUser to
@@ -63,7 +83,8 @@ class UserController{
      * 
      * @returns {Object}    response.redirect object
      */
-    login = async (request, response) => {
+    
+     login = async (request, response) => {
         // Try to see if form submission is valid
         try{
             await AraDTUserModel.login(request, response)
@@ -105,7 +126,7 @@ class UserController{
                 }).catch((error) => {
                     // Firebase registration has failed, so return Firebase errors
                     request.session.errors.register = [error.message];
-                    response.redirect('/');
+                    response.redirect('/account');
                 });
         } catch(errors) {
             // Form has failed validation, so return errors
@@ -118,15 +139,12 @@ class UserController{
 
     updateAccount =  async (request, response) => {
 
-        /* This gets the user to update there account */
         var currentUser = AraDTUserModel.getCurrentUser();
         if (currentUser) {
             try{
                 await AraDTUserModel.update(request, response)
                     .then(() => {
-                        
-                        /* Tells the user that its been updated */
-                        response.locals.errors.profile = ['Your details have been updated']; 
+                        response.locals.errors.profile = ['Your details have been updated'];
                         response.render('account');
                     }).catch((error) => {
                         response.locals.errors.profile = [error.message];
@@ -144,19 +162,14 @@ class UserController{
     
     updatePassword = async (request, response) => {
 
-        /* Changing the password for the user */
         var currentUser = AraDTUserModel.getCurrentUser();
         if (currentUser) {
             try{
                 await AraDTUserModel.updatePassword(request, response)
                     .then(() => {
-
-                        /* Tells the user that it was worked and the password has been updated */
                         response.locals.errors.password = ['Your password has been updated'];
                         response.render('account');
                     }).catch((error) => {
-
-                        /* Tells the user that it didnt work */
                         response.locals.errors.password = [error.message];
                         response.render('account');
                     });
@@ -178,6 +191,14 @@ class UserController{
         response.render('account');
     }
 
+    chat(request, response, next) {
+
+        if (!request.session.token) {
+            response.redirect('/');
+        }
+        response.render('chat');
+    }
+
     logout = async (request, response) => {
         request.session.errors.general = ['You have been logged out'];
         response.locals.loggedin = false;
@@ -188,6 +209,5 @@ class UserController{
                 response.redirect('/');
             });
     }
-
 }
 module.exports = UserController;
