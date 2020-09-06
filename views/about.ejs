@@ -1,0 +1,134 @@
+<%- include('partials/header'); %>
+
+<h2 style="text-align:center">Our Team</h2>
+    <div class="row">
+        <div class="column">
+            <div class="card" style="height: 680px">
+                <img src="images/contact_g.jpg" alt="Jane" class="image">
+                <div class="container">
+                    <h2>Jane Doe</h2>
+                    <p class="title">CEO & Founder</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo in nisi non tincidunt. Cras maximus cursus quam, in ultricies dolor tincidunt vitae. Ut laoreet augue consequat, elementum augue bibendum, egestas arcu. Donec egestas massa ac hendrerit fermentum. Donec feugiat ornare nulla nec posuere. Vivamus sed nisi efficitur, malesuada est sit amet, aliquet libero. Morbi justo ipsum, elementum vitae condimentum in, egestas sit amet enim. Donec non vehicula justo. Phasellus in dui ante.</p>
+                    <p>Email me:<a href="#"> jane@example.com</p></a>
+                    <p><button class="button">Contact</button></p>
+                </div>          
+            </div>
+        </div>
+
+    <div class="column">
+        <div class="card" style="height: 680px">
+            <img src="images/contact_m.jpg" alt="Mike" class="image">
+            <div class="container">
+                <h2>Mike Ross</h2>
+                <p class="title">Art Director</p>
+                <p>Aliquam eu dui vitae, vulputate tristique urna. Curabitur vel metus luctus purus posuere aliquet. Fusce sodales orci quis odio efficitur, non pretium nunc tempor. Pellentesque aliquet maximus nulla vitae euismod. Aenean pretium orci non risus egestas ultrices. Cras eget augue eu metus volutpat ornare. Morbi facilisis ullamcorper leo elementum elementum. Nulla ultricies urna eget ultrices dapibus. Ut non tempor turpis. Suspendisse consectetur mauris sit amet tellus bibendum, et feugiat nisl ornare.</p>
+                <p>Email me:<a href="#"> mike@example.com</a></p>
+                <p><button class="button">Contact</button></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="column">
+        <div class="card" style="height: 680px">
+            <img src="images/avatar2.png" alt="John" class="image">
+            <div class="container">
+                <h2>John Doe</h2>
+                <p class="title">Designer</p>
+                <p>Maecenas tincidunt mauris lacus, id pretium orci convallis eu. Nulla ligula augue, egestas mattis velit a, auctor gravida lorem. Etiam volutpat tincidunt lorem sit amet malesuada. Suspendisse velit arcu, rhoncus in dolor sed, sodales tempus turpis. Cras id cursus nunc. Maecenas consectetur nisi at diam aliquet, sed commodo ligula convallis. Duis venenatis dictum ipsum. Quisque mollis euismod ante quis venenatis. Fusce molestie nisi nulla, sed sollicitudin ex elementum at. Duis efficitur volutpat.</p>
+                <p>Email me:<a href="#"> john@example.com</a></p>
+                <p><button class="button">Contact</button></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="about-section">
+  <h1>About The Team </h1>
+  <p>Some text about who we are and what we do.</p>
+  <p>Integer sagittis malesuada leo. Nulla et libero nec sem bibendum accumsan id non sem. Vivamus mattis mollis tortor, non congue tellus imperdiet at. Vivamus vitae lorem enim. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Proin dictum mauris id faucibus aliquet. Duis congue lectus sed nunc vestibulum, vel sodales nunc mattis.</p>
+</div>
+
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+.image {
+  height: 250px;
+  width: 100%;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.column {
+  float: left;
+  width: 33.3%;
+  margin-bottom: 16px;
+  padding: 0 8px;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin: 8px;
+}
+
+.about-section {
+  padding: 50px;
+  text-align: center;
+  background-color: #474e5d;
+  color: white;
+}
+
+.container {
+  padding: 0 16px;
+}
+
+.container::after, .row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.title {
+  color: grey;
+}
+
+.button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+.button:hover {
+  background-color: #555;
+}
+
+@media screen and (max-width: 650px) {
+  .column {
+    width: 100%;
+    display: block;
+  }
+}
+</style>
+
+<%- include('partials/footer'); %>
