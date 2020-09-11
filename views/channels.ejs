@@ -1,0 +1,43 @@
+<% var users = locals.channels.users %>
+<% var owned = locals.channels.owned %>
+<% var subscribed = locals.channels.subscribed %>
+<%- include('partials/header'); %>
+	<form id="channel-create-form" action="/channels/add" method="post" enctype="multipart/form-data">
+		<input type="text" class="form-control" name="name" placeholder="Display Name" value="">
+		<input type="file" class="custom-file-input" name="avatar" id="avatar-upload">
+		<% if (users) { %>
+			<% users.forEach(function(user) { %>
+				<input class="user-check-input" id="user<%= user.id %>" type="checkbox" name="users" value="<%= user.id %>">
+				<p><%= user.name %></p>
+			<% }) %>
+		<% } %>
+		<button id="update" type="submit">Create</button>
+	</form>
+	<div id="owned-channels" class="user-channels">
+		<h4>Your Channels</h4>
+		<% if (owned) { %>
+			<ul>
+			<% owned.forEach(function(channel) { %>
+				<li>
+					<img src="<%= channel.image %>" alt="<%= channel.name %>">
+					<a href="/channel/<%= channel.id %>/"><%= channel.name %></a>
+					<a href="/channels/delete/<%= channel.id %>/"><i class="fa fa-trash" aria-hidden="true"></i></a>
+				</li>
+			<% }) %>
+			</ul>
+		<% }  %>
+	</div>
+	<div id="subscribed-channels" >
+		<h4>Subscribed Channels</h4>
+		<% if (subscribed) { %>
+			<ul>
+			<% subscribed.forEach(function(channel) { %>
+				<li>
+					<img src="<%= channel.image %>" alt="<%= channel.name %>">
+					<a href="/channel/<%= channel.id %>/"><%= channel.name %></a>
+				</li>
+			<% }) %>
+			</ul>
+		<% }  %>
+	</div>					 
+<%- include('partials/footer'); %>

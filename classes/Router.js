@@ -52,14 +52,6 @@ class Router{
      */
     addBaseRoutes() {
         AraDTApp.get('/', this.index);
-        /*( AraDTApp.get('/about', this.about);
-        AraDTApp.get('/account', this.account);
-        AraDTApp.get('/channel', this.channel);
-        AraDTApp.get('/chat', this.chat);
-        AraDTApp.get('/chat2', this.chat2);
-        AraDTApp.get('contact', this.contact);
-        AraDTApp.get('/login', this.login);
-        AraDTApp.get('/register', this.register); */ 
     }
 
 
@@ -78,38 +70,6 @@ class Router{
     index(request, response, next) {
         response.render('index');
     }
-
-    /* about(request, response, next) {
-        response.render('about');
-    }
-
-    account(request, response, next) {
-        response.render('account');
-    }
-
-    channal(request, response, next) {
-        response.render('channel');
-    }
-
-    chat(request, response, next) {
-        response.render('chat');
-    }
-
-    chat2(request, response, next) {
-        response.render('chat2');
-    }
-
-    contact(request, response, next) {
-        response.render('contact');
-    }
-
-    login(request, response,next) {
-        response.render('login');
-    }
-
-    register(request, response,next) {
-        response.render('register');
-    } */
 
     // Adds middleware to add HTTP Error to 404 requests
     handle404s() {

@@ -1,88 +1,28 @@
-<!-- % //ALL LOCALS DATA %>
-
-
+        <% //ALL LOCALS DATA %>
 		<% if (locals.errors) { %>
-		<% var errorKeys = JSON.stringify(Object.keys(locals.errors), null, 2); %>
-		<pre>Error keys: <%= errorKeys %></pre>
 		<% var errorData = JSON.stringify(locals.errors, null, 2); %>
 		<pre>Errors: <%= errorData %></pre>
 		<% } %>
 		<% if (locals.user) { %>
-		<% var userKeys = JSON.stringify(Object.keys(locals.user), null, 2); %>
-		<pre>User keys: <%= userKeys %></pre>
 		<% var userData = JSON.stringify(locals.user, null, 2); %>
 		<pre>User: <%= userData %></pre>
 		<% } %>
 		<% if (locals.channels) { %>
-		<% var channelKeys = JSON.stringify(Object.keys(locals.channels), null, 2); %>
-		<pre>Channel keys: <%= channelKeys %></pre>
 		<% var channels = JSON.stringify(locals.channels, null, 2); %>
 		<pre>Channels: <%= channels %></pre>
 		<% } %>
-
-		<!-- Footer -->
-<footer class="page-footer font-small cyan darken-3">
-
-	<!-- Footer Elements -->
-	<div class="container">
-  
-	  <!-- Grid row-->
-	  <div class="row">
-  
-		<!-- Grid column -->
-		<div class="col-md-12 py-5">
-		  <div class="mb-5 flex-center">
-  
-			<!-- Facebook -->
-			<a class="fb-ic">
-			  <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
-			</a>
-			
-			<!-- Twitter -->
-			<a class="tw-ic">
-			  <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
-			</a>
-			
-			<!-- Google +-->
-			<a class="gplus-ic">
-			  <i class="fab fa-google-plus-g fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
-			</a>
-			
-			<!--Linkedin -->
-			<a class="li-ic">
-			  <i class="fab fa-linkedin-in fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
-			</a>
-			
-			<!--Instagram-->
-			<a class="ins-ic">
-			  <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
-			</a>
-			
-			<!--Pinterest-->
-			<a class="pin-ic">
-			  <i class="fab fa-pinterest fa-lg white-text fa-2x"> </i>
-			</a>
-		  </div>
-		</div>
-		<!-- Grid column -->
-  
-	  </div>
-	  <!-- Grid row-->
-  
-	</div>
-	<!-- Footer Elements -->
-  
-	<!-- Copyright -->
-	<div class="footer-copyright text-center py-3">© 2020 Copyright:
-	  <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
-	</div>
-	<!-- Copyright -->
-  
-  </footer>
-  <!-- Footer -->
-  
-</body>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+		<% if (locals.channel) { %>
+		<% var channel = JSON.stringify(locals.channel, null, 2); %>
+		<pre>Channel: <%= channel %></pre>
+		<% } %>
+		<% if (locals.messages) { %>
+		<% var messages = JSON.stringify(locals.messages, null, 2); %>
+		<pre>Messages: <%= messages %></pre>
+		<% } %>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+		<script src="/socket/socket.io.js"></script>
+		<script src="/javascripts/chat.js"></script>
+	</body>
 </html>

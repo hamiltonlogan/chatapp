@@ -1,96 +1,24 @@
 <%- include('partials/header'); %>
 
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-<div class="container">
-<br> <p class="text-center">More Bootstrap 4 components on <a href="http://bootstrap-ecommerce.com/">Bootstrap-ecommerce.com</a></p>
-
-<div class="card bg-light">
-<article class="card-body mx-auto" style="max-width: 400px;">
-  <h4 class="card-title mt-3 text-center">Create Account</h4>
-  <p class="text-center">Get stated with your free account</p>
-  <p>
-    <a href="https://twitter.com" class="btn btn-block btn-twitter"> <i class="fab fa-twitter"></i>  Login via Twitter</a>
-    <a href="https://www.facebook.com" class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i> Login via facebook</a>
-  </p>
-  <p class="divider-text">
-    <span class="bg-light">OR</span>
-  </p>
-  <form method="POST" action="/register">
-    <div class="form-group input-group">
-      <div class="input-group-prepend">
-        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
-      </div>
-      <input name="" class="form-control" placeholder="Full name" type="text">
-    </div> 
-    <!--- Form Gorup -->
-
-    <div class="form-group input-group">
-      <div class="input-group-prepend">
-        <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
-      </div>
-      <input name="email" class="form-control" placeholder="Email address" type="email">
-    </div>
-    <!--- Form Group -->
-
-    <div class="form-group input-group">
-      <div class="input-group-prepend">
-        <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
-      </div>
-      <select class="custome-select" style="max-width: 120px;">
-        <option selected="">+027</option>
-        <option value="1">+020</option>
-        <option value="2">+021</option>
-        <option value="3">+03</option>
-      </select>
-
-      <input name="" class="form-control" placeholder="Phone number" type="text">
-    </div>
-    <!--- Form Group -->
-
-    <div class="form-group-input-group">
-      <div class="input-group-prendend">
-        <span class="input-group-text"> <i class="fa fa-building"></i> </span>
-      </div>
-
-      <select class="form-control">
-        <option selected=""> Select job type</option>
-        <option>Teacher</option>
-        <option>Student</option>
-        <option>Parent</option>
-      </select>
-    </div>
-    <!--- Form Group End -->
-
-    <div class="form-group input-group">
-      <div class="input-group-prepend">
-        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
-      </div>
-      <input name="password" class="form-control" placeholder="Create password" type="password">
-    </div>
-    <!--- Form Group -->
-
-    <div class="form-group-input-group">
-      <div class="input-group-prepend">
-        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
-      </div>
-      <input name="passwordConfirm" class="form-control" placeholder="Repeat password" type="password">
-    </div>
-    <!--- Form Group -->
-
-    <div class="form-group">
-      <button type="submit" class="btn btn-primary btn-block">Create Account </button>
-    </div><!--- Form Group -->
-
-    <p class="text-center">Have an account? <a href="/login">Log In</a> </p>
-  </form>
-</article>
-</div><!--- Card -->
-</div><!--- Container End -->
-
-</article>
+<div id="logreg-forms" class="registration">
+  <% if (locals.errors && locals.errors.register) { %>
+      <% locals.errors.register.forEach(function(error) { %>
+          <p class="alert alert-primary" role="alert"><%= error %></p>
+      <% }) %>
+  <% } %>
+	<form class="form-signin" method="POST" action="/register">
+		<h1 class="h3 mb-3 font-weight-normal" style="text-align: center">Register</h1>
+		<input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" autofocus="" required>
+		<input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
+		<input type="password" id="inputPasswordConfirm" name="passwordConfirm" class="form-control" placeholder="Confirm your password" required>
+		
+		<button class="btn btn-success btn-block" type="submit"><i class="fas fa-sign-in-alt"></i>Register</button>
+		<hr>
+	</form>
+	<form method="GET" action="/">
+		<!-- <p>Don't have an account!</p>  -->
+		<button class="btn btn-primary btn-block" type="submit" id="btn-signup"><i class="fas fa-user-plus"></i> Sign in instead</button>
+	</form>
+</div>
 
 <%- include('partials/footer'); %>

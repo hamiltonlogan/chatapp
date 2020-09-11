@@ -1,51 +1,22 @@
 <%- include('partials/header'); %> 
-<!--- Start of Jumbotron -->
-<div id="logreg-forms" class="jumbotron">
-  <h1 class="display-4">Hello, world</h1>
-  <form action="/login" class="form-signup">
-	
+<div id="logreg-forms">
 	<% if (locals.errors && locals.errors.login) { %>
-		<div class="container">
-			<div class="row justify-content-md-center">
-				<div class="generic-errors col-6">
-					<% locals.errors.login.forEach(function(error) { %>
-						<p class="alert alert-primary" role="alert"><%= error %></p>
-					<% }) %>
-				</div>
-			</div>
-		</div>
+		<% locals.errors.login.forEach(function(error) { %>
+			<p class="alert alert-primary" role="alert"><%= error %></p>
+		<% }) %>
 	<% } %>
-	<div class="social-login">
-		<button class="btn facebook-btn social-btn" type="button"><span><i class="fab fa-facebook-f"></i> Sign up with Facebook</span> </button>
-	</div>
-	<div class="social-login">
-		<button class="btn google-btn social-btn" type="button"><span><i class="fab fa-google-plus-g"></i> Sign up with Google+</span> </button>
-	</div>
-	
-	<p style="text-align:center">OR</p>
-
-	<input type="email" id="user-email" class="form-control" placeholder="Email address" required autofocus="">
-	<input type="password" name="password" id="user-pass" class="form-control" placeholder="Password" required autofocus="">
-
-	<button class="btn btn-primary btn-block" type="submit"><i class="fas fa-user-plus"></i> Sign Up</button>
-	<a href="#" id="cancel_signup"><i class="fas fa-angle-left"></i> Back</a>
-</form>
+	<form class="form-signin" method="POST" action="/login">
+		<h1 class="h3 mb-3 font-weight-normal" style="text-align: center">Sign in</h1>
+		<input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" required="" autofocus="">
+		<input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required="">
+		
+		<button class="btn btn-success btn-block" type="submit"><i class="fas fa-sign-in-alt"></i> Sign in</button>
+		<a href="#" id="forgot_pswd">Forgot password?</a>
+		<hr>
+	</form>
+	<form method="GET" action="/register">
+		<!-- <p>Don't have an account!</p>  -->
+		<button class="btn btn-primary btn-block" type="submit" id="btn-signup"><i class="fas fa-user-plus"></i> Sign up New Account</button>
+	</form>
 </div>
-<!--- End of Jumbotron -->
-
-<!--- Start of Log in form -->
-<!--- End of Log in form -->
-
-
-<!--- Start of register form -->
-<h2>Register</h2>
-<form action="/register" method="post">
-	<input type="email" name="email" placeholder="Email">
-	<input type="phone" name="phone" placeholder="Phone">
-	<input type="password" name="password" placeholder="Password">
-	<input type="password" name="passwordConfirm" placeholder="Confirm Password">
-	<button type="submit">Register</button>
-</form>
-<!--- End of Register form -->
-
 <%- include('partials/footer'); %>

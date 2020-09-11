@@ -1,9 +1,10 @@
 <%- include('partials/header'); %> 
+<% 
 var showChannel = locals.channel.channel
 var messages = locals.messages
 var user = locals.user
 var participants = (locals.channel.inUsers) ? locals.channel.inUsers : false
-
+%> 
 			<div id="main">
 				<div class="container-fluid">
 					<div class="row">
@@ -56,5 +57,4 @@ var participants = (locals.channel.inUsers) ? locals.channel.inUsers : false
 					</div> <!-- end .row --> 
 				</div><!-- end .container-fluid -->
 			</div><!-- end #main -->
-
 <%- include('partials/footer'); %>
