@@ -1,5 +1,7 @@
 var UserController = require('../controllers/UserController'); 
 var ChannelController = require('../controllers/ChannelController');
+var createError = require('http-errors');
+
 /**
  * Router class to add controller routes to Express
  *
@@ -10,8 +12,8 @@ class Router{
 
     constructor(){
         this.setVariables();
-        this.addBaseRoutes();
         this.addControllers();
+        this.addBaseRoutes();
         this.handle404s();
         this.handleErrors();
     }
@@ -21,7 +23,20 @@ class Router{
      * to local values
      */
     setVariables(){
-        AraDTApp.use(function(request, response, next) {
+
+        AraDTApp.use(async (request, response, next) => {
+
+            console.log("################# Session Data #####################");
+            console.log(request.session);
+            // Check if user logged in for this session
+            if (request.session.user) {
+                response.locals.user = request.session.user;
+                response.locals.loggedin = true;
+            }
+
+            response.locals.channels = {};
+            await this.fetchAllChannelsData(response);
+            
             if (request.session.errors) {
                 response.locals.errors = request.session.errors;
             }
@@ -36,57 +51,65 @@ class Router{
      * no controllers or models
      */
     addBaseRoutes() {
-        AraDTApp.get('/index', this.index);
-        AraDTApp.get('/chat', this.chat);
-        AraDTApp.get('/login', this.login);
-        AraDTApp.get('/contact', this.contact);
-        AraDTApp.get('/chat2', this.chat2);
-        AraDTApp.get('/chat3', this.chat3);
-        AraDTApp.get('/about', this.about);
+        AraDTApp.get('/', this.index);
+        /*( AraDTApp.get('/about', this.about);
         AraDTApp.get('/account', this.account);
+        AraDTApp.get('/channel', this.channel);
+        AraDTApp.get('/chat', this.chat);
+        AraDTApp.get('/chat2', this.chat2);
+        AraDTApp.get('contact', this.contact);
+        AraDTApp.get('/login', this.login);
+        AraDTApp.get('/register', this.register); */ 
     }
 
-    index(request, response, next) {
-        response.render('index')
-    }
-
-    chat(reuqest,response, next) {
-        response.render('chat')
-    }
-
-    account(request, response, next) {
-        response.render('account')
-    }
-
-    login(request, response, next) {
-        response.render('login')
-    }
-
-    contact(request, response, next) {
-        response.render('contact')
-    }
-
-    chat2(request, response, next) {
-        response.render('chat2')
-    }
-
-    about(request, response, next) {
-        response.render('about')
-    }
 
     /**
      * Add controllers for key models, 
      * e.g. Users, Channels, Messages
      */
     addControllers() {
-        var userController = new UserController();
         var channelController = new ChannelController();
-    };
+        var userController = new UserController();
+        channelController.addRoutes();
+        userController.addRoutes();
+    }
 
     // Renders home page ./views/index.ejs
     index(request, response, next) {
         response.render('index');
     }
+
+    /* about(request, response, next) {
+        response.render('about');
+    }
+
+    account(request, response, next) {
+        response.render('account');
+    }
+
+    channal(request, response, next) {
+        response.render('channel');
+    }
+
+    chat(request, response, next) {
+        response.render('chat');
+    }
+
+    chat2(request, response, next) {
+        response.render('chat2');
+    }
+
+    contact(request, response, next) {
+        response.render('contact');
+    }
+
+    login(request, response,next) {
+        response.render('login');
+    }
+
+    register(request, response,next) {
+        response.render('register');
+    } */
 
     // Adds middleware to add HTTP Error to 404 requests
     handle404s() {
@@ -100,6 +123,7 @@ class Router{
         
         //  error handler
         AraDTApp.use(function(error, request, response, next) {
+            
             if (error) {
                 console.log('Error', error);
             }
@@ -112,7 +136,12 @@ class Router{
             response.render('error');
         });
     }
+    
+    fetchAllChannelsData = async (response) => {
+        response.locals.channels.all = await AraDTChannelModel.getAllChannels();
+        console.log("################# All Channels Data #####################");
+        console.log(response.locals.channels.all);
+    }
 
 }
 module.exports = Router;
-  

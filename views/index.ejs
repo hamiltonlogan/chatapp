@@ -1,21 +1,39 @@
 <%- include('partials/header'); %> 
-
 <!--- Start of Jumbotron -->
-<div class="jumbotron">
+<div id="logreg-forms" class="jumbotron">
   <h1 class="display-4">Hello, world</h1>
-  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information</p>
-  <p>It uses utility classes for typography and spacing to space content out wothing the larger container.</p>
-  <a class="btn btn-primary btn-lg" href="#" role="button">Learn More</a>
+  <form action="/login" class="form-signup">
+	
+	<% if (locals.errors && locals.errors.login) { %>
+		<div class="container">
+			<div class="row justify-content-md-center">
+				<div class="generic-errors col-6">
+					<% locals.errors.login.forEach(function(error) { %>
+						<p class="alert alert-primary" role="alert"><%= error %></p>
+					<% }) %>
+				</div>
+			</div>
+		</div>
+	<% } %>
+	<div class="social-login">
+		<button class="btn facebook-btn social-btn" type="button"><span><i class="fab fa-facebook-f"></i> Sign up with Facebook</span> </button>
+	</div>
+	<div class="social-login">
+		<button class="btn google-btn social-btn" type="button"><span><i class="fab fa-google-plus-g"></i> Sign up with Google+</span> </button>
+	</div>
+	
+	<p style="text-align:center">OR</p>
+
+	<input type="email" id="user-email" class="form-control" placeholder="Email address" required autofocus="">
+	<input type="password" name="password" id="user-pass" class="form-control" placeholder="Password" required autofocus="">
+
+	<button class="btn btn-primary btn-block" type="submit"><i class="fas fa-user-plus"></i> Sign Up</button>
+	<a href="#" id="cancel_signup"><i class="fas fa-angle-left"></i> Back</a>
+</form>
 </div>
 <!--- End of Jumbotron -->
 
 <!--- Start of Log in form -->
-<h2>Login</h2>
-<form action="/login" method="post">
-	<input type="email" name="email" placeholder="Email">
-	<input type="password" name="password" placeholder="Password">
-	<button type="submit">Login</button>
-</form>
 <!--- End of Log in form -->
 
 
