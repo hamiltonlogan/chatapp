@@ -23,41 +23,45 @@
             <li class="nav-item">
               <a class="nav-link" href="/index">Home <span class="sr-only">(current)</span></a>
             </li>
-            
-            <!--- Account update page -->
-            <li class="nav-item">
-              <a class="nav-link" href="/account">Account</a>
+
+            <% if (locals.loggedin) { %>
+              
+              <!--- Account update page -->
+              <li class="nav-item">
+                <a class="nav-link" href="/account">Account</a>
+              </li>
+              
+              <!--- Dropdowns -->
+              <li class="nav-item dropdown dmenu">
+              <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                Chat Rooms
+              </a>
+              <div class="dropdown-menu sm-menu">
+                <a class="dropdown-item" href="/chat">Spastic Times</a>
+                <a class="dropdown-item" href="/chat2">Jasi Swim Club</a>
+              </div>
             </li>
+            <% } else { %>
             
-            <!--- Dropdowns -->
-            <li class="nav-item dropdown dmenu">
-            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-              Chat Rooms
-            </a>
-            <div class="dropdown-menu sm-menu">
-              <a class="dropdown-item" href="/chat">Spastic Times</a>
-              <a class="dropdown-item" href="/chat2">Jasi Swim Club</a>
-            </div>
-          </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="/">Login</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/register">Register</a>
+              </li>
+            <% } %>
+            
           
-          <!--- Contact us -->
-          <li class="nav-item">
-            <a class="nav-link" href="/contact">Contact Us</a>
-          </li>
-          
-          <!--- Sign up-->
-          <li class="nav-item">
-            <a class="nav-link" href="/register">Sign Up</a>
-		      </li>
           
           <!--- About us -->
           <li class="nav-item">
             <a class="nav-link" href="/about">About Us</a>
           </li>
-
-          <!--- Login -->
+          
+          <!--- Contact us -->
           <li class="nav-item">
-            <a class="nav-link" href="/login">Login</a>
+            <a class="nav-link" href="/contact">Contact Us</a>
           </li>
 
            <!-- <li class="nav-item dropdown dmenu">

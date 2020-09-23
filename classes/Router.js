@@ -52,6 +52,11 @@ class Router{
      */
     addBaseRoutes() {
         AraDTApp.get('/', this.index);
+        AraDTApp.get('/chat', this.chat);
+        AraDTApp.get('/about', this.about);
+        AraDTApp.get('/chat2', this.chat2);
+        AraDTApp.get('/contact', this.contact);
+        AraDTApp.get('/register', this.register);
     }
 
 
@@ -69,6 +74,26 @@ class Router{
     // Renders home page ./views/index.ejs
     index(request, response, next) {
         response.render('index');
+    }
+
+    chat(request, response, next) {
+        response.render('chat');
+    }
+
+    about(request, response, next) {
+        response.render('about');
+    }
+
+    chat2(request, response, next) {
+        response.render('chat2');
+    }
+
+    contact(request, response, next) {
+        response.render('contact');
+    }
+
+    register(request, response, next) {
+        response.render('register')
     }
 
     // Adds middleware to add HTTP Error to 404 requests
