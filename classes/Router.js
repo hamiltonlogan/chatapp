@@ -52,7 +52,7 @@ class Router{
      */
      addBaseRoutes() {
         AraDTApp.get('/', this.index);
-        AraDTApp.get('/chat', this.chat);
+        // AraDTApp.get('/chat', this.chat);
         AraDTApp.get('/about', this.about);
         AraDTApp.get('/chat2', this.chat2);
         AraDTApp.get('/contact', this.contact);
@@ -76,9 +76,9 @@ class Router{
         response.render('index');
     }
 
-    chat(request, response, next) {
+     /* chat(request, response, next) {
         response.render('chat');
-    }
+    } */
 
     about(request, response, next) {
         response.render('about');
