@@ -57,6 +57,7 @@ class Router{
         AraDTApp.get('/contact', this.contact);
         AraDTApp.get('/register', this.register);
         AraDTApp.get('/login', this.login);
+        AraDTApp.get('/account', this.account);
     } 
 
 
@@ -93,8 +94,12 @@ class Router{
     }
 
     register(request, response, next) {
-        response.render('register')
+        response.render('register');
     } 
+
+    account(request, response, next) {
+        response.render('account');
+    }
 
     // Adds middleware to add HTTP Error to 404 requests
     handle404s() {
