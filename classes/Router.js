@@ -52,11 +52,11 @@ class Router{
      */
      addBaseRoutes() {
         AraDTApp.get('/', this.index);
-        // AraDTApp.get('/chat', this.chat);
-        AraDTApp.get('/about', this.about);
+        AraDTApp.get('/index', this.index);
         AraDTApp.get('/chat2', this.chat2);
         AraDTApp.get('/contact', this.contact);
         AraDTApp.get('/register', this.register);
+        AraDTApp.get('/login', this.login);
     } 
 
 
@@ -76,10 +76,6 @@ class Router{
         response.render('index');
     }
 
-     /* chat(request, response, next) {
-        response.render('chat');
-    } */
-
     about(request, response, next) {
         response.render('about');
     }
@@ -90,6 +86,10 @@ class Router{
 
     contact(request, response, next) {
         response.render('contact');
+    }
+
+    login(request, response, next) {
+        response.render('login');
     }
 
     register(request, response, next) {
